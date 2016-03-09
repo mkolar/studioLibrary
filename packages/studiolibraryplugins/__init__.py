@@ -1,4 +1,4 @@
-# Copyright 2016 by Kurt Rathjen. All Rights Reserved.
+# Copyright 2015 by Kurt Rathjen. All Rights Reserved.
 #
 # Permission to use, modify, and distribute this software and its
 # documentation for any purpose and without fee is hereby granted,
@@ -13,3 +13,30 @@
 # ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER
 # IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
 # OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+import os
+import sys
+
+import studioqt
+
+__encoding__ = sys.getfilesystemencoding()
+
+
+PATH = unicode(os.path.abspath(__file__), __encoding__)
+DIRNAME = os.path.dirname(PATH).replace('\\', '/')
+RESOURCE_DIRNAME = DIRNAME + "/resource"
+
+
+_resource = None
+
+
+def resource():
+    """
+    :rtype: studioqt.Resource
+    """
+    global _resource
+
+    if not _resource:
+        _resource = studioqt.Resource(dirname=RESOURCE_DIRNAME)
+
+    return _resource
